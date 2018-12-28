@@ -4,7 +4,8 @@ I completed this challenge using Laravel. Using a framework like this is heavy h
 - app/Http/Controllers/ApiDataController.php
 - routes/web.php
 - resources/views/(all views)
-I chose not to create a database or any models because all of the data is returned dynamically from the Github API.
+
+I also added Guzzle as a dependency for the API calls. I chose not to create a database or any models because all of the data is returned dynamically from the Github API.
 
 To run this program, first download the zip file and unzip. Remove .example from the .env filename - you will need the .env file to run the program and it is not uploaded to GitHub. 
 
