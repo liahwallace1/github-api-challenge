@@ -8,7 +8,7 @@ use GuzzleHttp\Client;
 
 class ApiDataController extends Controller
 {
-
+    // returns Organization Data to the 'org' view
     public function org()
     {
         try {
@@ -29,13 +29,18 @@ class ApiDataController extends Controller
         }
     }
 
+    // returns the list of repository IDs to the 'apiData' view OR returns the 'errors' view
     public function repos()
     {
         try {
             $client = new Client();
+            
+            // retrieve the org data to compare the number of public repositories
             $org_data = $client->get('https://api.github.com/orgs/BoomTownROI');
             $org_repos = json_decode($org_data->getBody())->public_repos;
             $requested_number = $org_repos + 1;
+            
+            // to overcome the default page limits, increase the page limit to 1 over the number of public repos from the org data. 
             $res = $client->get('https://api.github.com/orgs/BoomTownROI/repos?per_page=' . $requested_number);
             $status = json_decode($res->getStatusCode());
             $data = json_decode($res->getBody());
@@ -49,6 +54,7 @@ class ApiDataController extends Controller
         }
     }
 
+    // returns the list of event IDs to the 'apiData' view OR returns the 'errors' view
     public function events()
     {
          try {
@@ -65,6 +71,7 @@ class ApiDataController extends Controller
          }
     }
 
+    // returns the list of hook IDs to the 'apiData' view OR returns the 'errors' view
     public function hooks()
     {
         try {
@@ -84,6 +91,7 @@ class ApiDataController extends Controller
         }
     }
 
+    // returns the list of issues IDs to the 'apiData' view OR returns the 'errors' view
     public function issues()
     {
         try {
@@ -101,6 +109,7 @@ class ApiDataController extends Controller
         }
     }
 
+    // returns the list of member IDs to the 'apiData' view OR returns the 'errors' view
     public function members()
     {
         try {
@@ -118,6 +127,7 @@ class ApiDataController extends Controller
         }
     }
 
+    // returns the list of public member IDs to the 'apiData' view OR returns the 'errors' view
     public function publicMembers()
     {
         try {
